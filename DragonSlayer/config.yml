@@ -1,0 +1,324 @@
+# ###################### #
+# Dragon Slayer v0.12.4  #
+# ###################### #
+# ------------------------------------------------------------------------------------------ #
+# here are some infos about the sections in this config:                                     #
+# prefix: These are some general settings                                                    #
+# global: Here are more general values                                                       #
+# dragon._default: Here are some defaults that will be used for newly added worlds           #
+# messages: you can use placeholders in here: $slayer, $slayername, $world, $dragon,         #
+# $reward, $baseworld                                                                        #
+# spawnpoint: here are the spawnpoints for the worlds the plugin is working in               #
+# armorstand: the location where the statue will be placed                                   #
+# ------------------------------------------------------------------------------------------ #
+# in 'respawncommand' you can use placeholder $player                                        #
+# in 'command' you can use placeholders $slayer, $slayername, $player, $dragon and $world    #
+# in 'spawncommand[_n]' you can use the same placeholders like in 'command'                  #
+# in 'rankcommand[_n]' you can use placeholders $player, $dragon, $rank and $world           #
+# you can add multiple commands as one string separated by a semicolon(;)                    #
+# ------------------------------------------------------------------------------------------ #
+# placeholders in timertext,timerline,resetline,showtime: $days,$hours,$minutes and $seconds #
+# additional placeholder in showtime and showtime_n: $world                                  #
+# if timerline, resetline, showtime or showtime_n is empty it will show some defaults.       #
+# ------------------------------------------------------------------------------------------ #
+# in 'protect' you can use $amount                                                           #
+# ------------------------------------------------------------------------------------------ #
+# in 'scoreboard' you can use placeholders $player and $score                                #
+# ------------------------------------------------------------------------------------------ #
+# you can add additional dragonvalues like name_1, damage_1, health_1, exp_1, reward_1,      #
+# createportal_1, command_1 and spawncommand_1                                               #
+# or name_2 etc. in the world's settings for having individual dragons...                    #
+# noautorespawn_1 etc. is possible to be added to disable that dragon's respawntimer         #
+# ########################################################################################## #
+
+#
+
+
+# ###############################################################################
+# spawnpoint - Here are the spawnpoints for the worlds the plugin is working in :
+#
+spawnpoint:
+  end:
+    x: 4.764054102107452
+    y: 93.0
+    z: -20.80339595013987
+# ############################################################
+# prefix- Here are some general settings for the prefix/suffix
+#
+prefix:
+  prefix: '&9[Dragon Slayer]&r ' #                       #the prefix, the Dragon Slayer gets
+  enabled: false #                                        #enable the prefix: true/false
+  assuffix: false #                                      #use suffix instead of prefix true/false (no function in UChat)
+  force: false #                                         #if you have UChat or PAPI installed but don't want to use it for DragonSlayer set this to true
+  tablist: true #                                        #if the prefix should show up in player tablist.
+  tablist_time: 15 #                                     #after how many seconds the prefix should be set, default every 15 secs. (possible values 1 to 30)
+
+# ##############################################################
+# global - Here are some general settings for the dragons/worlds
+#
+global:
+  slayer: 1964510e-0177-446e-a5a7-effc88bad1c0 #                                        #saves the UUID of the Dragon Slayer
+  slayerbypercent: false #                               #whether the slayer is selected by being the killer or the top damager.
+  blockgrief: false #                                    #is the dragon allowed to destroy non end blocks (can be overridden by world's-settings)
+  trydragonautofix: false #                              #can be used to try spawning missing dragons on map entering (can be overridden by world's-settings)
+  bypassdragongateway: true #                            #if set to true, dragons will not enter the gateways (used as a bugfix..)
+  bypassfunc: 2 #                                        #gateway fix: 1: Dragons 'jump' over the gateways, 2: gateways get switched off/on
+  teleportdragons: false #                               #teleport the dragons to world's center when first player enters the end (can be overridden by world-setting)
+  darkness: false #                                       #darkness while in battle with the dragon? (can be overridden by world-setting)
+  verbose: true #                                        #switch verbosity of some textoutput on/off
+  keepchunks: true #                                     #keep chunks with dragons in memory, or not.
+  armorstand_usepapi: false #                            #enable statue's name to use PlaceholderAPI (and in messages...)
+  armorstand_placeholder: '%player_displayname%' #       #the PAPI-placeholder for the statue/armorstand (%player_displayname% is displayname, or use %player_custom_name% or %player_name%)
+  armorstand_format: '%slayer%' #                        #can be used to add additional text...
+  armorstand_material: diamond #                         #possible values: diamond, golden, iron, lether, chainmail, netherite
+  statue_version: 1 #                                    #which statue to use: 1: ArmorStand, 2: NPC-Statue
+  multiportal: false #                                   #enable multiportal and multispawn feature
+  portalagression: 12 #                                  #the less, the more the dragon guards the portal (only when multiportal is enabled)
+  fixdeathflight: true #                                 #if the plugin should fix that the dragon is dying at its portal...
+  disable_global_spawnsound: false #                     #deactivates the dragon's global spawn sound. Can be heared in dragon's world only, when on "true".
+
+# ########################################################
+# dragon - Here are the dragon values for the added worlds
+#
+dragon:
+  # #############################################################################
+  # _default - Here are the dragon defaults (will be used for newly added worlds)
+  #
+  _default: #                                            #default values that get copied to any world that is added by setting a spawn
+    name: '&5Smaug&r' #                                  #dragon's default value
+    displaydragonname: true #                            #enable the name to be displayed above the dragon head.
+    damage: 10.0 #                                       #dragon's default damage value (must be > 0 ! If set to 0 no change to the dragon's value is done!)
+    health: 200 #                                        #dragon's default health value (must be 1 - max value from spigot.yml), if set to 0 no change to the dragon's health is done!
+    regen_seconds: 0 #                                   #how long it takes to automatically heal the dragon (0 = off)
+    regen_amount: 10 #                                   #how much the dragon heals itself... (without crystals!)
+    glow_effect: false #                                 #if dragons have glow effect.
+    hit_indicator: false #                               #if the dragon should 'blink' when hit.
+    bossbar_distance: 200 #                              #min distance (player to dragon) to display the bossbar. (blocks)
+    range: 16 #                                          #default, follow range (still experimental!)
+    exp: 12000 #                                         #default value, experience the dragon drops when it's killed.
+    reward: 0.0 #                                     #requires vault, gives the player a certain amount of money, this is default value
+    eggchance: 0.3 #                                     #percentage drop chance for dragon eggs, make sure to use values from 0 to 1 (0, 0.1, 0.2, 0.3, ... ,0.9 , 1).
+    eggasitem: false #                                   #drop the egg as an item, not as a block: true/false (default value)
+    skullchance: 0.03 #                                  #chance for skull drop. 0.03=3%, 1=100%
+    skullitem: false #                                   #enable/disable skull drop
+    portaleggchance: 1.0 #                               #same as eggchance, but for the portal's egg itself
+    cancelegg: false #                                   #turn off player interaction with eggs: true/false
+    alternativereward: false #                           #if the alternative reward system should be used
+    respawndelay: 1 #                                  #in minutes, how long it should take for the dragon to respawn once it gets killed. -1 for deactivation. -2 for deactivation but keeping maxdragons active !
+    maxdragons: 1 #                                      #maximal amount of dragons per world (this is the default value)
+    onebyone: true #                                    #only spawn one dragon of the possible multidragons (randomly)
+    createportal: false #                                 #if an exit portal should be created after dragon death
+    oldportals: false #                                  #use old portal spawn behavior instead of portal at location 0/0 or spawn location. portal gets created at kill location.
+    denycrystalplace: false #                            #deny players from placing crystals at the portal
+    denycrystalexplode: false #                          #deny crystals from making damage when expoding.
+    denybedexplode: false #                              #disable bed explosions in the end, beds will just drop..
+    creategateways: false #                               #enable/disable creation of end-gateways to the 'endcity'
+    fixgateways: false #                                 #fix/reset 'damaged' end city gateways
+    resetworld: false #                                  #reset the world after a given delay when all dragons are gone
+    resetcrystal: false #                                #refresh the world after a delay when all dragons are gone
+    resetworlddelay: 300 #                               #minutes, default value, used for resetworld and resetcrystal (and respawnplayers)
+    resetwarntime: 1 #                                   #amount of minutes for the warning to be displayed before reset/refresh
+    respawnplayers: false #                              #if true players will be teleported after resetworlddelay
+    nomcdragonrespawn: true #                            #if set to true, will disable the servers internal dragonrespawn/dragonremove at server restart. So, this will disable the original portal from being spawned aswell...
+    command: '{100}ping' #                               #command(s) to be executed at dragonkill, you can use $slayer, $slayername, $player, $dragon and $world here (separate multiple commands by ;), {100}=percentage
+    spawncommand: '' #                                   #command(s) at dragonrespawn, you can use $player, $dragon and $world here (separate multiple commands by ;). You can use percentages here,too.
+    respawncommand: '' #                                 #alternative command for player teleport etc. (after dragonkill)
+    rankcommand_1: whisper $player You did $percent% of the damage fighting dragon
+      $dragon in world $world #                          #commands that get executed for the best player when the dragon got killed
+    rankcommand_2: whisper $player You helped fighting $dragon in world $world (2nd
+      place, $percent% damage) #                         #commands for 2nd placed fighter...
+    timerfunc: 2 #                                       #what to display in timerdisplay/scoreboard: 1 seconds, 2 timercount, 0 nothing (completely disables scoreboard)
+  end:
+    name_1: '&eYoung Dragon&r'
+    damage_1: '10.0'
+    health_1: '200'
+    regen_seconds: '0'
+    regen_amount: '10'
+    range: '16'
+    bossbar_distance: '200'
+    exp: '12000'
+    reward_1: '0.0'
+    eggchance: '0.0'
+    portaleggchance: '0.0'
+    eggasitem: 'false'
+    skullchance: '0.00'
+    skullitem: 'false'
+    cancelegg: 'false'
+    respawndelay: '360'
+    createportal: true
+    oldportals: 'false'
+    denycrystalplace: 'false'
+    denycrystalexplode: 'false'
+    denybedexplode: 'false'
+    creategateways: 'false'
+    fixgateways: 'false'
+    alternativereward: 'false'
+    displaydragonname: 'true'
+    resetworld: 'false'
+    resetcrystal_1: 'false'
+    resetworlddelay: '300'
+    resetwarntime: '1'
+    timerfunc: '0'
+    respawnplayers: 'false'
+    respawncommand_1:
+    - titlemanager broadcast &cThe &eYoung Dragon &chas risen from its ashes! &7/warp
+      end
+    spawncommand_1:
+    - titlemanager broadcast &cThe &eYoung Dragon &chas risen from its ashes! &7/warp
+      end
+    command_1:
+    - '{100}lp user $slayer parent addtemp dragon 6h'
+    - '{100} tm broadcast &a$slayername &fhas claimed the &d&lDRAGON RANK'
+    - '{100} crate give p dragon 1 $slayer'
+    rankcommand_1_1:
+    - whisper $player You did $percent% of the damage fighting dragon $dragon in world
+      $world
+    rankcommand_2_1:
+    - whisper $player You helped fighting $dragon in world $world (2nd place, $percent%
+      damage)
+    nomcdragonrespawn: 'true'
+    glow_effect: 'false'
+    hit_indicator: 'false'
+    name_2: '&dOld Dragon&r'
+    damage_2: '20.0'
+    health_2: '400'
+    regen_seconds_2: '0'
+    regen_amount_2: '10'
+    range_2: '16'
+    bossbar_distance_2: '200'
+    exp_2: '12000'
+    reward_2: '0.0'
+    eggchance_2: '0.0'
+    portaleggchance_2: '0.0'
+    eggasitem_2: 'false'
+    skullchance_2: '0.00'
+    skullitem_2: 'false'
+    cancelegg_2: 'false'
+    respawndelay_2: '360'
+    createportal_2: 'false'
+    oldportals_2: 'false'
+    denycrystalplace_2: 'false'
+    denycrystalexplode_2: 'false'
+    denybedexplode_2: 'false'
+    creategateways_2: 'false'
+    fixgateways_2: 'false'
+    alternativereward_2: 'false'
+    displaydragonname_2: 'true'
+    resetworld_2: 'false'
+    resetcrystal_2: 'false'
+    resetworlddelay_2: '300'
+    resetwarntime_2: '1'
+    timerfunc_2: '0'
+    respawnplayers_2: 'false'
+    nomcdragonrespawn_2: 'true'
+    glow_effect_2: 'false'
+    hit_indicator_2: 'false'
+    respawncommand_2:
+    - titlemanager broadcast &cThe &dOld Dragon &chas risen from its ashes! &7/warp
+      end
+    spawncommand_2:
+    - titlemanager broadcast &cThe &dOld Dragon &chas risen from its ashes! &7/warp
+      end
+    command:
+    - '{100}lp user $slayer parent addtemp dragon 6h'
+    - '{100} tm broadcast &a$slayername &fhas claimed the &d&lDRAGON RANK'
+    - '{100} crate give p dragon 2 $slayer'
+    rankcommand_1_2:
+    - whisper $player You did $percent% of the damage fighting dragon $dragon in world
+      $world
+    rankcommand_2_2:
+    - whisper $player You helped fighting $dragon in world $world (2nd place, $percent%
+      damage)
+    name_3: '&5Ancient Dragon&r'
+    onebyone: 'true'
+    maxdragons: '3'
+    damage_3: '40.0'
+    health_3: '800'
+    regen_seconds_3: '0'
+    regen_amount_3: '10'
+    range_3: '16'
+    bossbar_distance_3: '200'
+    exp_3: '12000'
+    reward_3: '0.0'
+    eggchance_3: '0.0'
+    portaleggchance_3: '0.0'
+    eggasitem_3: 'false'
+    skullchance_3: '0.0'
+    skullitem_3: 'false'
+    cancelegg_3: 'false'
+    respawndelay_3: '360'
+    createportal_3: 'false'
+    oldportals_3: 'false'
+    denycrystalplace_3: 'false'
+    denycrystalexplode_3: 'false'
+    denybedexplode_3: 'false'
+    creategateways_3: 'false'
+    fixgateways_3: 'false'
+    alternativereward_3: 'false'
+    displaydragonname_3: 'true'
+    resetworld_3: 'false'
+    resetcrystal_3: 'false'
+    resetworlddelay_3: '300'
+    resetwarntime_3: '1'
+    timerfunc_3: '0'
+    respawnplayers_3: 'false'
+    nomcdragonrespawn_3: 'true'
+    glow_effect_3: 'false'
+    hit_indicator_3: 'false'
+    respawncommand_3:
+    - titlemanager broadcast &cThe &5Ancient Dragon &chas risen from its ashes! &7/warp
+      end
+    spawncommand_3:
+    - titlemanager broadcast &cThe &5Ancient Dragon &chas risen from its ashes! &7/warp
+      end
+    command_3:
+    - '{100}lp user $slayer parent addtemp dragon 6h'
+    - '{100} tm broadcast &a$slayername &fhas claimed the &d&lDRAGON RANK'
+    - '{100} crate give p dragon 4 $slayer'
+    rankcommand__1_3:
+    - whisper $player You did $percent% of the damage fighting dragon $dragon in world
+      $world
+    rankcommand_2_3:
+    - whisper $player You helped fighting $dragon in world $world (2nd place, $percent%
+      damage)
+    name: '&5Smaug&r'
+    health: '200'
+    reward: '0.0'
+
+# ################################################################################################
+# Messages - placeholders you can use: $slayer, $slayername, $world, $dragon, $reward , $baseworld  
+#
+messages:
+  respawn: '&5&lDRAGON &8|| &cThe $dragon &chas risen from its ashes! &7/warp end'
+  onkill: '&5&lDRAGON &8|| &a$slayername has &fkilled the $dragon &rand claimed the
+    &d&lDRAGON RANK'
+  onrekill: '&5&lDRAGON &8|| &a$slayername has &fkilled the $dragon &rand reclaimed
+    the &d&lDRAGON RANK'
+  slayer: '&6$slayername &fis the one and only &9Dragon Slayer!'
+  noslayer: There currently is no hero who can call himself the true &9Dragon Slayer!
+  reward: You received &6$reward coins &rfor killing &4$dragon
+  xpreward: You received &6$reward XP &rfor fighting &4$dragon
+  died: '&4The Dragon in world $world died. Maybe it was too old... or it was the'
+  protect: '&fWatch out.. there be dragons about!'
+  reset: Warning! The world $world may reset in less than one minute!!!
+  playerrespawn: Warning! Every player in world $world will respawn to world $baseworld
+    in less than one minute!!!
+  timertext: 'Next Respawn or Reset :' # 'Next Respawn: Days:$days, $hours:$minutes'
+  timerline: 'Spawn in: $days Days, $hours:$minutes:$seconds, #'
+  resetline: 'Reset in: $days Days, $hours:$minutes:$seconds, #'
+  notimer_ph: Currently Spawned
+  noname_ph: none
+  unknownname_ph: Unknown
+  noscore_ph: '-'
+  showtime: 'Next dragon spawn is: $world: $days days, $hours:$minutes:$seconds'
+  showreset: 'Next world reset is: $world: $days days, $hours:$minutes:$seconds'
+  showtime_n: No spawn timer found for world $world !
+  scoreboard: '$player�s kills: $score'
+  crystaldeny: '&4Placing crystals is not allowed!'
+armorstand:
+  world: end
+  x: 264.5
+  y: 104.0
+  z: -9.5
+  yaw: 91.533325
+  texture: ZXdvZ0lDSjBhVzFsYzNSaGJYQWlJRG9nTVRZNE1ETTROamc0TXpVMU1Td0tJQ0FpY0hKdlptbHNaVWxrSWlBNklDSXhPVFkwTlRFd1pUQXhOemMwTkRabFlUVmhOMlZtWm1NNE9HSmhaREZqTUNJc0NpQWdJbkJ5YjJacGJHVk9ZVzFsSWlBNklDSlRiMjV1ZVVSbFlXTnNaU0lzQ2lBZ0luTnBaMjVoZEhWeVpWSmxjWFZwY21Wa0lpQTZJSFJ5ZFdVc0NpQWdJblJsZUhSMWNtVnpJaUE2SUhzS0lDQWdJQ0pUUzBsT0lpQTZJSHNLSUNBZ0lDQWdJblZ5YkNJZ09pQWlhSFIwY0RvdkwzUmxlSFIxY21WekxtMXBibVZqY21GbWRDNXVaWFF2ZEdWNGRIVnlaUzh6TW1JeU5HSTFZV0kzTkRKaFpUQXpOVGhpT0RCa05tTmlaakJpWWpkaFpUazNabUU0WVRZMVpHSTVNMlk1TURjM1lXWTRNalZqTURjME5qZGpNMlptSWdvZ0lDQWdmU3dLSUNBZ0lDSkRRVkJGSWlBNklIc0tJQ0FnSUNBZ0luVnliQ0lnT2lBaWFIUjBjRG92TDNSbGVIUjFjbVZ6TG0xcGJtVmpjbUZtZEM1dVpYUXZkR1Y0ZEhWeVpTOHlNelF3WXpCbE1ETmtaREkwWVRFeFlqRTFZVGhpTXpOak1tRTNaVGxsTXpKaFltSXlNRFV4WWpJME9ERmtNR0poTjJSbFptUTJNelZqWVRkaE9UTXpJZ29nSUNBZ2ZRb2dJSDBLZlE9PV9TSUdfWlpWbC9jNEl0QlR5UUZucGpJZ0JCcG1oYzJtTzUyYUs0QWJqMGxRQi85MHMyYnIvRjFnV1NDdWdhbjV2WUthK1ZQK2ZHMWpQeGt3UXFWTDYwVzd2aTJrY0hCRTVKY3VQVzZiMC9QRURHaVNYaDRhMytBUDV3UFZQRjVEdXdvbjEwU3hqNHhjRXVYSjNNZDRqRnc2RzI1R0xnNi9lNVBhRVJEd29DQURpRUE2WmlQL3A2dURCTVlmdndSalRreVpGVWJyNDByTExtSENJb3gzemRVRDNWcklUZVY2TTNVVUFGSjRIUmxFa0UrVzU0YXFSQk1oUW1XS0YzVmZKNjRlYjlKWXZ2SUttRVpCV1FFMUl0TDV0bFN2ZkF3QTVJSU1YdlQ0Ly9ZZ2JhV3NlOWhIM1AzQ0Z4N0cvVkd1ZTVXQ1pZaGpsUG1YL2o4NmtiaXpuNHl5V3BHTFdNYTVzVmp0VEc1czhPOEFNMy95UEVRQTFORTJpcFJrbURYRkZiWU1DSE9vQXo0RG1uMWxjMThhRk1CU1ZockVkUFNwREwzRU9UYmRacTZjbHF3L0dYMllSRUg5S2QraWZhWEUxdUoybXhGcVNvd1ZaY0Y5UkdOUm8rNHI3OXFyUEFJckNpTTV0MDFkcTJmRG52bmMyUUFEUXgwdGFGU3l4elZENmpaL2xQcWVTN20vQzNieCtjV0txOXYxZk5oY2xoelZVYnp6b25mL01zYU5aSFhIMVA2QmZwZXlVN25iMldzdElLSzIxdXZDMVVYcTNTbGtpOTRHMFBkRkdaTUtLQ3BPUm1rZ1cyREFKUVpyL0VIWFpBMXJwMnc4R0tFNTErVjlwOW5LZWtiM0pCUFl4WklIVFY5MWFNS1ZoRkIyUnpLNXZYWDlmenBPYnlGR2c5Y009
