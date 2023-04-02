@@ -57,7 +57,7 @@ prefix:
 # global - Here are some general settings for the dragons/worlds
 #
 global:
-  slayer: 1964510e-0177-446e-a5a7-effc88bad1c0 #                                        #saves the UUID of the Dragon Slayer
+  slayer: f852aa4c-1c14-4026-bcd1-df7e99fde3c8 #                                        #saves the UUID of the Dragon Slayer
   slayerbypercent: false #                               #whether the slayer is selected by being the killer or the top damager.
   blockgrief: false #                                    #is the dragon allowed to destroy non end blocks (can be overridden by world's-settings)
   trydragonautofix: false #                              #can be used to try spawning missing dragons on map entering (can be overridden by world's-settings)
@@ -145,7 +145,7 @@ dragon:
     skullitem: 'false'
     cancelegg: 'false'
     respawndelay: '360'
-    createportal: true
+    createportal: false
     oldportals: 'false'
     denycrystalplace: 'false'
     denycrystalexplode: 'false'
@@ -284,6 +284,18 @@ dragon:
     name: '&5Smaug&r'
     health: '200'
     reward: '0.0'
+    damage: '10.0'
+    resetcrystal: 'false'
+    respawncommand:
+    - ''
+    spawncommand:
+    - ''
+    rankcommand_1:
+    - whisper $player You did $percent% of the damage fighting dragon $dragon in world
+      $world
+    rankcommand_2:
+    - whisper $player You helped fighting $dragon in world $world (2nd place, $percent%
+      damage)
 
 # ################################################################################################
 # Messages - placeholders you can use: $slayer, $slayername, $world, $dragon, $reward , $baseworld  
@@ -321,4 +333,4 @@ armorstand:
   y: 104.0
   z: -9.5
   yaw: 91.533325
-  texture: ZXdvZ0lDSjBhVzFsYzNSaGJYQWlJRG9nTVRZNE1ETTROamc0TXpVMU1Td0tJQ0FpY0hKdlptbHNaVWxrSWlBNklDSXhPVFkwTlRFd1pUQXhOemMwTkRabFlUVmhOMlZtWm1NNE9HSmhaREZqTUNJc0NpQWdJbkJ5YjJacGJHVk9ZVzFsSWlBNklDSlRiMjV1ZVVSbFlXTnNaU0lzQ2lBZ0luTnBaMjVoZEhWeVpWSmxjWFZwY21Wa0lpQTZJSFJ5ZFdVc0NpQWdJblJsZUhSMWNtVnpJaUE2SUhzS0lDQWdJQ0pUUzBsT0lpQTZJSHNLSUNBZ0lDQWdJblZ5YkNJZ09pQWlhSFIwY0RvdkwzUmxlSFIxY21WekxtMXBibVZqY21GbWRDNXVaWFF2ZEdWNGRIVnlaUzh6TW1JeU5HSTFZV0kzTkRKaFpUQXpOVGhpT0RCa05tTmlaakJpWWpkaFpUazNabUU0WVRZMVpHSTVNMlk1TURjM1lXWTRNalZqTURjME5qZGpNMlptSWdvZ0lDQWdmU3dLSUNBZ0lDSkRRVkJGSWlBNklIc0tJQ0FnSUNBZ0luVnliQ0lnT2lBaWFIUjBjRG92TDNSbGVIUjFjbVZ6TG0xcGJtVmpjbUZtZEM1dVpYUXZkR1Y0ZEhWeVpTOHlNelF3WXpCbE1ETmtaREkwWVRFeFlqRTFZVGhpTXpOak1tRTNaVGxsTXpKaFltSXlNRFV4WWpJME9ERmtNR0poTjJSbFptUTJNelZqWVRkaE9UTXpJZ29nSUNBZ2ZRb2dJSDBLZlE9PV9TSUdfWlpWbC9jNEl0QlR5UUZucGpJZ0JCcG1oYzJtTzUyYUs0QWJqMGxRQi85MHMyYnIvRjFnV1NDdWdhbjV2WUthK1ZQK2ZHMWpQeGt3UXFWTDYwVzd2aTJrY0hCRTVKY3VQVzZiMC9QRURHaVNYaDRhMytBUDV3UFZQRjVEdXdvbjEwU3hqNHhjRXVYSjNNZDRqRnc2RzI1R0xnNi9lNVBhRVJEd29DQURpRUE2WmlQL3A2dURCTVlmdndSalRreVpGVWJyNDByTExtSENJb3gzemRVRDNWcklUZVY2TTNVVUFGSjRIUmxFa0UrVzU0YXFSQk1oUW1XS0YzVmZKNjRlYjlKWXZ2SUttRVpCV1FFMUl0TDV0bFN2ZkF3QTVJSU1YdlQ0Ly9ZZ2JhV3NlOWhIM1AzQ0Z4N0cvVkd1ZTVXQ1pZaGpsUG1YL2o4NmtiaXpuNHl5V3BHTFdNYTVzVmp0VEc1czhPOEFNMy95UEVRQTFORTJpcFJrbURYRkZiWU1DSE9vQXo0RG1uMWxjMThhRk1CU1ZockVkUFNwREwzRU9UYmRacTZjbHF3L0dYMllSRUg5S2QraWZhWEUxdUoybXhGcVNvd1ZaY0Y5UkdOUm8rNHI3OXFyUEFJckNpTTV0MDFkcTJmRG52bmMyUUFEUXgwdGFGU3l4elZENmpaL2xQcWVTN20vQzNieCtjV0txOXYxZk5oY2xoelZVYnp6b25mL01zYU5aSFhIMVA2QmZwZXlVN25iMldzdElLSzIxdXZDMVVYcTNTbGtpOTRHMFBkRkdaTUtLQ3BPUm1rZ1cyREFKUVpyL0VIWFpBMXJwMnc4R0tFNTErVjlwOW5LZWtiM0pCUFl4WklIVFY5MWFNS1ZoRkIyUnpLNXZYWDlmenBPYnlGR2c5Y009
+  texture: ZXdvZ0lDSjBhVzFsYzNSaGJYQWlJRG9nTVRZNE1EUTNNalF6T0Rjek55d0tJQ0FpY0hKdlptbHNaVWxrSWlBNklDSm1PRFV5WVdFMFl6RmpNVFEwTURJMlltTmtNV1JtTjJVNU9XWmtaVE5qT0NJc0NpQWdJbkJ5YjJacGJHVk9ZVzFsSWlBNklDSkNhV3hzZVcxdUlpd0tJQ0FpYzJsbmJtRjBkWEpsVW1WeGRXbHlaV1FpSURvZ2RISjFaU3dLSUNBaWRHVjRkSFZ5WlhNaUlEb2dld29nSUNBZ0lsTkxTVTRpSURvZ2V3b2dJQ0FnSUNBaWRYSnNJaUE2SUNKb2RIUndPaTh2ZEdWNGRIVnlaWE11YldsdVpXTnlZV1owTG01bGRDOTBaWGgwZFhKbEx6a3hOVGswTUdGak1EQTJNRFUxWmpjNFpUVmxPVFpoTW1OaFlUa3daRE00TjJNeVlXUTBZbUZpWTJRM05HRmhaVGRsTUdFNE5XUXlabVEzWldVMVlUa2lDaUFnSUNCOUxBb2dJQ0FnSWtOQlVFVWlJRG9nZXdvZ0lDQWdJQ0FpZFhKc0lpQTZJQ0pvZEhSd09pOHZkR1Y0ZEhWeVpYTXViV2x1WldOeVlXWjBMbTVsZEM5MFpYaDBkWEpsTDJZNVlUYzJOVE0zTmpRM09UZzVaamxoTUdJMlpEQXdNV1V6TWpCa1lXTTFPVEZqTXpVNVpUbGxOakZoTXpGbU5HTmxNVEZqT0RobU1qQTNaakJoWkRRaUNpQWdJQ0I5Q2lBZ2ZRcDlfU0lHX2JUNjJtdWZwRjY2MWltRWFxSlNqeW1yRTBVV2lNUDlWZHFORXJlZWRyT3REbEMwc1NnUEhHbVZmYitTWitnSEdnZ0xYUjZzTW1EWmkrU2hoZyt1Y3pHRHVwRkQ0eHNiT25BYzBkMVRFS3JjOHV4YzJiVFIzd3BTb1A1bzQ2aHpJck54U1RyeTZiZ2kwYjdwRCtJdUgrT1ZFVlI3QXBrYkp6ZDZsSVZUVzdXK1FGaTJweUh1bzBDYXlSbytnSkZRYUNFeGx6TGgwdVlKMDF5Q0dtUlpGTFRWalJBMVM0anRhOXBVeldOT21YdFFpTytiQzFFYmdOWEtNb085WlJhYlVRT2NaY1lSb2pteGxrMGxoTUxJL254U3NuSVdGVTROdnZPMlhScWlCSWtmcUtEUHArODZTL3c4Mm5oTjFsem91YkhmU09UTWdNZERtazN0UDI3eFgxV05NQVdtN21tZm1pQkRVUFdVanNtWkVWZ3EvZGdCWXcvSWlqVE0wVE5LQ1cwa2EraU1XRGpPditVTTJQM0hkSGFlZnVuOFNmbGFYVVg2bGNxWk4wVW5wRm9VUzQ3TTAwYVBaR0hHU0xBUzl6eVhCTU0rV3JqbHN2T1hCR01uaTdjS0tUdWdleWpvTTVwb1FJRko1ajMzL0Rnd0FmaVNsbDJJdGw2bG5sWTRCTlZnNjhWbDQ5a0d6WVdZTFZheE9HME92bE45NEdyWnltY2FBNDB1OTdZcUFtcmJXb01hUmVJaTNvdHRVdjMrTE5KRmg5VHFsSnVZTmtoTnNRa0hrekJiWEN4WTQ4eWM1MU4vQ0dITExMM1B2YVF2WUFNQkgwK3B3eHR5MDV1Q3lSSXpXR0xZdjREdXo2WTlsbXhMZHVwdmd1YTVVVURvbGY2ZTBPeUhjaEN3PQ==
